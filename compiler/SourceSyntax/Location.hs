@@ -40,17 +40,13 @@ sameAs (L s _) = L s
 
 
 instance Show SrcPos where
-    show (Pos r c) = show r ++ "," ++ show c
+    show (Pos r c) = show r ++ ":" ++ show c
 
 instance Show SrcSpan where
   show span = 
       case span of
         NoSpan _ -> ""
-        Span start end _ ->
-            case line start == line end of
-              False -> "between lines " ++ show (line start) ++ " and " ++ show (line end)
-              True -> "on line " ++ show (line end) ++ ", column " ++
-                      show (column start) ++ " to " ++ show (column end)
+        Span start end _ -> " (" ++ show start ++ " to " ++ show end ++ ")"
 
 instance Show e => Show (Located e) where
   show (L _ e) = show e

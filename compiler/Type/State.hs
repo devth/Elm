@@ -65,11 +65,7 @@ addError span hint t1 t2 =
          , P.text "        " <> t2'
          ]
 
-    location = case span of
-                 NoSpan msg -> ""
-                 Span p1 p2 msg ->
-                     if line p1 == line p2 then " on line " ++ show (line p1)
-                     else " between lines " ++ show (line p1) ++ " and " ++ show (line p2)
+    location = show span
 
     display msg =
         case lines msg of
